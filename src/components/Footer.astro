@@ -7,27 +7,28 @@ const socialLinks = getSocialLinks();
 const { siteName, siteTagline, logo } = getSiteSettings();
 ---
 
-<footer class="bg-gray-900 text-gray-300">
+<footer style="background-color: var(--color-secondary); color: var(--color-text-muted);">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
       <!-- Brand -->
       <div class="col-span-1">
         <a href="/" class="flex items-center gap-2 mb-4">
           {logo.showIcon && (
-            <div class="w-8 h-8 bg-gradient-to-br from-rose-500 to-pink-600 rounded-lg flex items-center justify-center">
-              <span class="text-white font-bold text-lg">{logo.iconText}</span>
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(to bottom right, var(--color-primary), var(--color-accent));">
+              <span class="font-bold text-lg" style="color: var(--color-text-inverse);">{logo.iconText}</span>
             </div>
           )}
-          <span class="text-xl font-bold text-white">{logo.text}</span>
+          <span class="text-xl font-bold" style="color: var(--color-text-inverse);">{logo.text}</span>
         </a>
-        <p class="text-sm text-gray-400 mb-4">
+        <p class="text-sm mb-4" style="color: var(--color-text-muted);">
           {siteTagline}. Stay updated with the latest in technology, design, and business.
         </p>
         <div class="flex gap-4">
           {socialLinks.map((social) => (
             <a 
               href={social.url} 
-              class="text-gray-400 hover:text-white transition-colors"
+              class="social-link transition-colors"
+              style="color: var(--color-text-muted);"
               aria-label={social.label}
               target="_blank"
               rel="noopener noreferrer"
@@ -70,13 +71,14 @@ const { siteName, siteTagline, logo } = getSiteSettings();
       <!-- Dynamic Footer Link Groups -->
       {footerGroups.map((group) => (
         <div>
-          <h3 class="text-white font-semibold mb-4">{group.title}</h3>
+          <h3 class="font-semibold mb-4" style="color: var(--color-text-inverse);">{group.title}</h3>
           <ul class="space-y-2">
             {group.links.map((link) => (
               <li>
                 <a 
                   href={link.href} 
-                  class="text-sm hover:text-white transition-colors"
+                  class="text-sm footer-link transition-colors"
+                  style="color: var(--color-text-muted);"
                   target={link.external ? '_blank' : undefined}
                   rel={link.external ? 'noopener noreferrer' : undefined}
                 >
@@ -89,8 +91,15 @@ const { siteName, siteTagline, logo } = getSiteSettings();
       ))}
     </div>
     
-    <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-400">
+    <div class="border-t mt-12 pt-8 text-center text-sm" style="border-color: var(--color-border); color: var(--color-text-muted);">
       <p>&copy; {currentYear} {siteName}. All rights reserved.</p>
     </div>
   </div>
 </footer>
+
+<style>
+  .social-link:hover,
+  .footer-link:hover {
+    color: var(--color-text-inverse) !important;
+  }
+</style>

@@ -6,17 +6,17 @@ const { siteName, logo } = getSiteSettings();
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="bg-white shadow-sm sticky top-0 z-50">
+<header class="shadow-sm sticky top-0 z-50" style="background-color: var(--color-surface);">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2">
         {logo.showIcon && (
-          <div class="w-8 h-8 bg-gradient-to-br from-rose-500 to-pink-600 rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-lg">{logo.iconText}</span>
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(to bottom right, var(--color-primary), var(--color-accent));">
+            <span class="font-bold text-lg" style="color: var(--color-text-inverse);">{logo.iconText}</span>
           </div>
         )}
-        <span class="text-xl font-bold text-gray-900">{logo.text}</span>
+        <span class="text-xl font-bold" style="color: var(--color-text-primary);">{logo.text}</span>
       </a>
       
       <!-- Desktop Navigation -->
@@ -24,11 +24,10 @@ const currentPath = Astro.url.pathname;
         {navItems.map((item) => (
           <a 
             href={item.href}
-            class={`text-sm font-medium transition-colors ${
-              currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
-                ? 'text-rose-600' 
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
+            class="text-sm font-medium transition-colors nav-link"
+            style={currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
+                ? `color: var(--color-primary);` 
+                : `color: var(--color-text-secondary);`}
             target={item.external ? '_blank' : undefined}
             rel={item.external ? 'noopener noreferrer' : undefined}
           >
@@ -40,7 +39,8 @@ const currentPath = Astro.url.pathname;
       <!-- Mobile Menu Button -->
       <button 
         id="mobile-menu-btn"
-        class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100"
+        class="md:hidden p-2 rounded-lg"
+        style="color: var(--color-text-secondary);"
         aria-label="Toggle menu"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -51,16 +51,15 @@ const currentPath = Astro.url.pathname;
   </div>
   
   <!-- Mobile Navigation -->
-  <nav id="mobile-menu" class="hidden md:hidden bg-white border-t">
+  <nav id="mobile-menu" class="hidden md:hidden border-t" style="background-color: var(--color-surface); border-color: var(--color-border);">
     <div class="px-4 py-4 space-y-3">
       {navItems.map((item) => (
         <a 
           href={item.href}
-          class={`block py-2 text-sm font-medium ${
-            currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
-              ? 'text-rose-600' 
-              : 'text-gray-600'
-          }`}
+          class="block py-2 text-sm font-medium"
+          style={currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
+              ? `color: var(--color-primary);` 
+              : `color: var(--color-text-secondary);`}
           target={item.external ? '_blank' : undefined}
           rel={item.external ? 'noopener noreferrer' : undefined}
         >
@@ -70,6 +69,12 @@ const currentPath = Astro.url.pathname;
     </div>
   </nav>
 </header>
+
+<style>
+  .nav-link:hover {
+    color: var(--color-text-primary) !important;
+  }
+</style>
 
 <script>
   const menuBtn = document.getElementById('mobile-menu-btn');
