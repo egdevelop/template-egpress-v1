@@ -1,0 +1,68 @@
+---
+import { getDesignTokens } from '../config/siteSettings';
+
+const tokens = getDesignTokens();
+const { colors, typography, spacing, borderRadius, shadows } = tokens;
+---
+
+<style is:global define:vars={{
+  'color-primary': colors.primary,
+  'color-primary-hover': colors.primaryHover,
+  'color-primary-light': colors.primaryLight,
+  'color-secondary': colors.secondary,
+  'color-accent': colors.accent,
+  'color-background': colors.background,
+  'color-surface': colors.surface,
+  'color-text-primary': colors.text.primary,
+  'color-text-secondary': colors.text.secondary,
+  'color-text-muted': colors.text.muted,
+  'color-text-inverse': colors.text.inverse,
+  'color-border': colors.border,
+  'color-success': colors.success,
+  'color-warning': colors.warning,
+  'color-error': colors.error,
+  'font-sans': typography.fontFamily.sans,
+  'font-serif': typography.fontFamily.serif,
+  'font-mono': typography.fontFamily.mono,
+  'shadow-sm': shadows.sm,
+  'shadow-md': shadows.md,
+  'shadow-lg': shadows.lg,
+  'shadow-xl': shadows.xl,
+  'radius-sm': borderRadius.sm,
+  'radius-md': borderRadius.md,
+  'radius-lg': borderRadius.lg,
+  'radius-xl': borderRadius.xl,
+  'radius-2xl': borderRadius['2xl'],
+  'radius-full': borderRadius.full,
+}}>
+  :root {
+    --color-primary: var(--color-primary);
+    --color-primary-hover: var(--color-primary-hover);
+    --color-primary-light: var(--color-primary-light);
+    --color-secondary: var(--color-secondary);
+    --color-accent: var(--color-accent);
+    --color-background: var(--color-background);
+    --color-surface: var(--color-surface);
+    --color-text-primary: var(--color-text-primary);
+    --color-text-secondary: var(--color-text-secondary);
+    --color-text-muted: var(--color-text-muted);
+    --color-text-inverse: var(--color-text-inverse);
+    --color-border: var(--color-border);
+    --color-success: var(--color-success);
+    --color-warning: var(--color-warning);
+    --color-error: var(--color-error);
+    --font-sans: var(--font-sans);
+    --font-serif: var(--font-serif);
+    --font-mono: var(--font-mono);
+    --shadow-sm: var(--shadow-sm);
+    --shadow-md: var(--shadow-md);
+    --shadow-lg: var(--shadow-lg);
+    --shadow-xl: var(--shadow-xl);
+    --radius-sm: var(--radius-sm);
+    --radius-md: var(--radius-md);
+    --radius-lg: var(--radius-lg);
+    --radius-xl: var(--radius-xl);
+    --radius-2xl: var(--radius-2xl);
+    --radius-full: var(--radius-full);
+  }
+</style>
