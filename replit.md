@@ -118,9 +118,39 @@ The site includes placeholder ad slots ready for Google AdSense:
 - Placements on homepage, blog listing, and blog post pages
 - Replace placeholder content with actual AdSense code when ready
 
-## Centralized Configuration
+## Centralized Configuration & Theming
 
-The site uses a centralized configuration system in `src/config/siteSettings.ts`:
+The site uses a centralized configuration system in `src/config/siteSettings.ts` that controls ALL styling and settings.
+
+### Theme System
+
+All colors, typography, and design tokens are configured in one place. The `ThemeStyles.astro` component generates CSS variables from the config, making the entire site themeable.
+
+#### Changing Colors
+
+Edit the `designTokens.colors` section in `src/config/siteSettings.ts`:
+
+```typescript
+colors: {
+  primary: '#E11D48',      // Main brand color (buttons, links, logo)
+  primaryHover: '#BE123C', // Hover state for primary
+  primaryLight: '#FFF1F2', // Light variant for backgrounds
+  secondary: '#1F2937',    // Dark color (footer background)
+  accent: '#F43F5E',       // Accent color for gradients
+  background: '#F9FAFB',   // Page background
+  surface: '#FFFFFF',      // Card/section backgrounds
+  text: {
+    primary: '#111827',    // Main text color
+    secondary: '#4B5563',  // Secondary text
+    muted: '#9CA3AF',      // Muted text
+    inverse: '#FFFFFF',    // Text on dark backgrounds
+  },
+  border: '#E5E7EB',       // Border colors
+  // ... success, warning, error colors
+}
+```
+
+After saving `siteSettings.ts`, the entire site will update with the new colors automatically.
 
 ### Configuration Sections
 - **designTokens**: Colors, typography, spacing, border radius, shadows
@@ -129,7 +159,7 @@ The site uses a centralized configuration system in `src/config/siteSettings.ts`
 
 ### Helper Functions
 ```typescript
-import { getSiteSettings, getNavigation, getSocialLinks, getCategories } from '../config/siteSettings';
+import { getSiteSettings, getNavigation, getSocialLinks, getCategories, getDesignTokens } from '../config/siteSettings';
 ```
 
 ### Feature Flags
@@ -141,6 +171,7 @@ import { getSiteSettings, getNavigation, getSocialLinks, getCategories } from '.
 
 ## Recent Changes
 
+- **November 29, 2024**: Implemented full theme system - all styling now configurable from siteSettings.ts. Created ThemeStyles component, updated all components to use CSS variables.
 - **November 29, 2024**: Created centralized configuration system (siteSettings.ts), updated Header/Footer/homepage to use config
 - **November 28, 2024**: Created GitHub repository, added AdSense placeholder component with strategic ad placements
 - **November 28, 2024**: Added legal pages (Terms of Service, Privacy Policy, Disclaimer), removed Download Our App button from header, improved image performance with explicit dimensions
