@@ -55,7 +55,7 @@ Blog posts use frontmatter with the following fields:
 - `description`: Short description for SEO
 - `pubDate`: Publication date
 - `author`: Object with `name` and optional `avatar`
-- `category`: One of: design, technology, research, management, customer-success
+- `category`: Any string (e.g., "Promo", "Travel", "Technology", etc.) - colors are auto-generated
 - `tags`: Array of tag strings
 - `featuredImage`: URL to the featured image
 - `featured`: Boolean for homepage featuring

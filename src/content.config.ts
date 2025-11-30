@@ -12,7 +12,7 @@ const blog = defineCollection({
       name: z.string(),
       avatar: z.string().optional(),
     }),
-    category: z.enum(['design', 'technology', 'research', 'management', 'customer-success']),
+    category: z.string(),
     tags: z.array(z.string()).optional(),
     featuredImage: z.string().optional(),
     featured: z.boolean().default(false),
