@@ -157,6 +157,41 @@ After saving `siteSettings.ts`, the entire site will update with the new colors 
 - **siteSettings**: Site name, logo, SEO defaults, social links, contact info, feature flags
 - **contentDefaults**: Navigation (header/footer), homepage content, blog settings, categories
 
+### SEO Configuration
+
+All SEO settings are in `siteSettings.seo`:
+
+```typescript
+seo: {
+  defaultTitle: 'Riven Blog',              // Default page title
+  titleTemplate: '%s | Riven',             // Title template (%s = page title)
+  defaultDescription: 'Your site description...',
+  defaultImage: '/og-image.svg',           // Default OG image
+  keywords: ['blog', 'technology'],        // Default keywords
+  language: 'en',                          // HTML lang attribute
+  locale: 'en_US',                         // OG locale
+  themeColor: '#E11D48',                   // Browser theme color
+  robots: 'index, follow',                 // Robots meta
+  twitterHandle: '@yourhandle',            // Twitter @handle
+  twitterCardType: 'summary_large_image',  // Twitter card type
+  facebookAppId: '',                       // Facebook App ID (optional)
+  googleSiteVerification: '',              // Google Search Console
+  bingSiteVerification: '',                // Bing Webmaster
+  googleAnalyticsId: '',                   // GA4 Measurement ID
+  author: 'Author Name',                   // Default author
+  publisher: 'Publisher Name',             // Publisher/organization
+  copyrightYear: '2024',                   // Copyright year
+}
+```
+
+The BaseLayout automatically generates:
+- Primary meta tags (title, description, author, robots, keywords)
+- Open Graph tags for Facebook/social sharing
+- Twitter Card tags
+- JSON-LD structured data (WebSite/BlogPosting schema)
+- Google Analytics (if ID provided)
+- Site verification codes
+
 ### Helper Functions
 ```typescript
 import { getSiteSettings, getNavigation, getSocialLinks, getCategories, getDesignTokens } from '../config/siteSettings';
@@ -171,6 +206,8 @@ import { getSiteSettings, getNavigation, getSocialLinks, getCategories, getDesig
 
 ## Recent Changes
 
+- **November 30, 2024**: Enhanced SEO configuration - added comprehensive SEO settings (keywords, robots, locale, verification codes, Google Analytics, etc). BaseLayout now fully uses config for all meta tags.
+- **November 30, 2024**: Category badge colors now auto-generated from category name (no manual config needed)
 - **November 29, 2024**: Implemented full theme system - all styling now configurable from siteSettings.ts. Created ThemeStyles component, updated all components to use CSS variables.
 - **November 29, 2024**: Created centralized configuration system (siteSettings.ts), updated Header/Footer/homepage to use config
 - **November 28, 2024**: Created GitHub repository, added AdSense placeholder component with strategic ad placements

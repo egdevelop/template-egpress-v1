@@ -88,7 +88,20 @@ export interface SiteSettings {
     titleTemplate: string;
     defaultDescription: string;
     defaultImage: string;
+    keywords: string[];
+    language: string;
+    locale: string;
+    themeColor: string;
+    robots: string;
     twitterHandle: string;
+    twitterCardType: 'summary' | 'summary_large_image' | 'app' | 'player';
+    facebookAppId: string;
+    googleSiteVerification: string;
+    bingSiteVerification: string;
+    googleAnalyticsId: string;
+    author: string;
+    publisher: string;
+    copyrightYear: string;
   };
   social: {
     twitter: string;
@@ -253,7 +266,20 @@ const siteConfig: SiteConfig = {
       titleTemplate: '%s | Riven',
       defaultDescription: 'A center for all our resources & insights. Stay updated with the latest in technology, design, and business.',
       defaultImage: '/og-image.svg',
+      keywords: ['blog', 'technology', 'design', 'business', 'insights', 'articles'],
+      language: 'en',
+      locale: 'en_US',
+      themeColor: '#E11D48',
+      robots: 'index, follow',
       twitterHandle: '@riven',
+      twitterCardType: 'summary_large_image',
+      facebookAppId: '',
+      googleSiteVerification: '',
+      bingSiteVerification: '',
+      googleAnalyticsId: '',
+      author: 'Riven Team',
+      publisher: 'Riven',
+      copyrightYear: '2024',
     },
     social: {
       twitter: 'https://twitter.com/riven',
