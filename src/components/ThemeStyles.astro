@@ -1,8 +1,30 @@
 ---
-import { getDesignTokens } from '../config/siteSettings';
+import { getDesignTokens, getCategories } from '../config/siteSettings';
 
 const tokens = getDesignTokens();
 const { colors, typography, spacing, borderRadius, shadows } = tokens;
+const categories = getCategories();
+
+function hexToRgb(hex: string) {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : { r: 0, g: 0, b: 0 };
+}
+
+const categoryVars = categories.map(cat => {
+  const rgb = hexToRgb(cat.color);
+  return `    --color-category-${cat.id}: ${cat.color};
+    --color-category-${cat.id}-light: rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.1);`;
+}).join('\n');
+
+const categoryStyles = categories.map(cat => `
+  .tag-${cat.id} {
+    background-color: var(--color-category-${cat.id}-light);
+    color: var(--color-category-${cat.id});
+  }`).join('\n');
 
 const cssVariables = `
   :root {
@@ -34,7 +56,9 @@ const cssVariables = `
     --radius-xl: ${borderRadius.xl};
     --radius-2xl: ${borderRadius['2xl']};
     --radius-full: ${borderRadius.full};
+${categoryVars}
   }
+${categoryStyles}
 `;
 ---
 
