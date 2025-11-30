@@ -79,9 +79,13 @@ export interface SiteSettings {
   siteDescription: string;
   siteUrl: string;
   logo: {
+    type: 'text' | 'image';
     text: string;
-    showIcon: boolean;
-    iconText: string;
+    image: string;
+    favicon: string;
+    showText: boolean;
+    width: number;
+    height: number;
   };
   seo: {
     defaultTitle: string;
@@ -257,9 +261,13 @@ const siteConfig: SiteConfig = {
     siteDescription: 'A modern blog platform featuring the latest insights on technology, design, research, and business management.',
     siteUrl: 'https://riven-blog.example.com',
     logo: {
+      type: 'image',
       text: 'Riven',
-      showIcon: true,
-      iconText: 'R',
+      image: '/logo.png',
+      favicon: '/logo.png',
+      showText: true,
+      width: 32,
+      height: 32,
     },
     seo: {
       defaultTitle: 'Riven Blog',

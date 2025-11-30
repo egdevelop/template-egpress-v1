@@ -154,8 +154,30 @@ After saving `siteSettings.ts`, the entire site will update with the new colors 
 
 ### Configuration Sections
 - **designTokens**: Colors, typography, spacing, border radius, shadows
-- **siteSettings**: Site name, logo, SEO defaults, social links, contact info, feature flags
+- **siteSettings**: Site name, logo (image or text), SEO defaults, social links, contact info, feature flags
 - **contentDefaults**: Navigation (header/footer), homepage content, blog settings, categories
+
+### Logo Configuration
+
+The logo system supports both image and text modes. Edit `siteSettings.logo`:
+
+```typescript
+logo: {
+  type: 'image',           // 'image' or 'text'
+  text: 'Riven',           // Site name text (shown if showText is true)
+  image: '/logo.png',      // Path to logo image (used when type is 'image')
+  favicon: '/logo.png',    // Path to favicon (can be same as logo or different)
+  showText: true,          // Show text next to logo image
+  width: 32,               // Logo width in pixels
+  height: 32,              // Logo height in pixels
+}
+```
+
+**To change the logo:**
+1. Replace `/public/logo.png` with your own logo image
+2. Update `logo.image` and `logo.favicon` paths if using different filenames
+3. Adjust `width` and `height` as needed
+4. Set `showText: false` to hide the text and show only the image
 
 ### SEO Configuration
 
@@ -206,6 +228,7 @@ import { getSiteSettings, getNavigation, getSocialLinks, getCategories, getDesig
 
 ## Recent Changes
 
+- **November 30, 2024**: Logo & favicon now support images - updated siteSettings.logo config to support both image and text modes. Header and BaseLayout now use image logo from config.
 - **November 30, 2024**: Enhanced SEO configuration - added comprehensive SEO settings (keywords, robots, locale, verification codes, Google Analytics, etc). BaseLayout now fully uses config for all meta tags.
 - **November 30, 2024**: Category badge colors now auto-generated from category name (no manual config needed)
 - **November 29, 2024**: Implemented full theme system - all styling now configurable from siteSettings.ts. Created ThemeStyles component, updated all components to use CSS variables.
