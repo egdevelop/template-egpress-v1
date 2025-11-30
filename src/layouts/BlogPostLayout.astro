@@ -4,6 +4,7 @@ import AuthorCard from '../components/AuthorCard.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
 import ShareButtons from '../components/ShareButtons.astro';
 import AdPlacement from '../components/AdPlacement.astro';
+import { getDesignTokens } from '../config/siteSettings';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -13,6 +14,8 @@ interface Props {
 
 const { post, relatedPosts = [] } = Astro.props;
 const { title, description, pubDate, author, category, featuredImage } = post.data;
+const { colors } = getDesignTokens();
+const avatarBgColor = colors.primary.replace('#', '');
 
 function formatDate(date: Date): string {
   return date.toLocaleDateString('en-US', {
@@ -28,7 +31,20 @@ function getReadingTime(content: string): number {
   return Math.ceil(words / wordsPerMinute);
 }
 
+function getCategoryColor(category: string): { bg: string; text: string } {
+  let hash = 0;
+  for (let i = 0; i < category.length; i++) {
+    hash = category.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const hue = Math.abs(hash % 360);
+  return {
+    bg: `hsla(${hue}, 70%, 50%, 0.1)`,
+    text: `hsl(${hue}, 70%, 40%)`
+  };
+}
+
 const readingTime = getReadingTime(post.body || '');
+const categoryColor = getCategoryColor(category);
 ---
 
 <BaseLayout 
@@ -43,9 +59,9 @@ const readingTime = getReadingTime(post.body || '');
     <!-- Article Header -->
     <header class="mb-8">
       <div class="flex items-center gap-3 mb-4">
-        <span class={`tag tag-${category}`}>{category.replace('-', ' ')}</span>
-        <span class="text-gray-400">•</span>
-        <span class="text-sm text-gray-500">{readingTime} min read</span>
+        <span class="tag" style={`background-color: ${categoryColor.bg}; color: ${categoryColor.text};`}>{category.replace('-', ' ')}</span>
+        <span style="color: var(--color-text-muted);">•</span>
+        <span class="text-sm" style="color: var(--color-text-muted);">{readingTime} min read</span>
       </div>
       
       <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
@@ -59,7 +75,7 @@ const readingTime = getReadingTime(post.body || '');
       <div class="flex items-center justify-between flex-wrap gap-4 pb-8 border-b border-gray-200">
         <div class="flex items-center gap-3">
           <img 
-            src={author.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(author.name)}&background=E11D48&color=fff&size=40`}
+            src={author.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(author.name)}&background=${avatarBgColor}&color=fff&size=40`}
             alt={author.name}
             class="w-10 h-10 rounded-full"
             loading="lazy"

@@ -25,7 +25,20 @@ function getReadingTime(content: string): number {
   return Math.ceil(words / wordsPerMinute);
 }
 
+function getCategoryColor(category: string): { bg: string; text: string } {
+  let hash = 0;
+  for (let i = 0; i < category.length; i++) {
+    hash = category.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const hue = Math.abs(hash % 360);
+  return {
+    bg: `hsla(${hue}, 70%, 50%, 0.1)`,
+    text: `hsl(${hue}, 70%, 40%)`
+  };
+}
+
 const readingTime = getReadingTime(post.body || '');
+const categoryColor = getCategoryColor(category);
 ---
 
 <article class="rounded-2xl overflow-hidden shadow-lg" style="background-color: var(--color-surface);">
@@ -53,7 +66,7 @@ const readingTime = getReadingTime(post.body || '');
     
     <div class="p-8 md:p-10 flex flex-col justify-center">
       <div class="flex items-center gap-3 mb-4">
-        <span class={`tag tag-${category}`}>{category.replace('-', ' ')}</span>
+        <span class="tag" style={`background-color: ${categoryColor.bg}; color: ${categoryColor.text};`}>{category.replace('-', ' ')}</span>
         <span style="color: var(--color-text-muted);">•</span>
         <span class="text-sm" style="color: var(--color-text-muted);">{readingTime} min read</span>
       </div>
