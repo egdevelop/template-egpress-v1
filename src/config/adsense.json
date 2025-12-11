@@ -1,14 +1,39 @@
 {
-  "enabled": false,
-  "publisherId": "ca-pub-XXX",
+  "enabled": true,
+  "publisherId": "ca-pub-5723093825971507",
   "autoAdsEnabled": false,
-  "headerScript": "",
+  "headerScript": "<script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5723093825971507\" crossorigin=\"anonymous\"></script>",
   "adCodes": {
-    "header": "",
-    "beforeContent": "",
-    "inArticle": "",
-    "afterContent": "",
-    "sidebar": "",
-    "footer": ""
+    "header": {
+      "slot": "",
+      "format": "auto",
+      "responsive": true
+    },
+    "beforeContent": {
+      "slot": "",
+      "format": "auto",
+      "responsive": true
+    },
+    "inArticle": {
+      "slot": "",
+      "format": "fluid",
+      "layout": "in-article",
+      "responsive": true
+    },
+    "afterContent": {
+      "slot": "",
+      "format": "auto",
+      "responsive": true
+    },
+    "sidebar": {
+      "slot": "",
+      "format": "auto",
+      "responsive": true
+    },
+    "footer": {
+      "slot": "",
+      "format": "horizontal",
+      "responsive": true
+    }
   }
 }
