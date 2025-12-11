@@ -1,0 +1,14 @@
+{
+  "enabled": false,
+  "publisherId": "ca-pub-XXX",
+  "autoAdsEnabled": false,
+  "headerScript": "",
+  "adCodes": {
+    "header": "",
+    "beforeContent": "",
+    "inArticle": "",
+    "afterContent": "",
+    "sidebar": "",
+    "footer": ""
+  }
+}
